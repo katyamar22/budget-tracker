@@ -1,0 +1,8 @@
+1. Class
+2. Add Income
+    - Display Income Total
+    - Update Budget
+3. Add Expense
+    - Display Expenses Total
+    - Update Budget
+    - List out Expenses

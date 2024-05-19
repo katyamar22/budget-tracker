@@ -1,0 +1,186 @@
+$primary-color: #88be79;
+$secondary-color: #305630;
+$third-color: #b32323;
+$fourth-color: #d3e4ce;
+
+$font-family: arial,Helvetica, sans-serif;;
+
+* {
+    box-sizing: border-box;  
+}
+
+html {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(90deg, rgba(136,190,121,1) 0%, rgb(200, 213, 189) 47%, rgba(159,205,155,1) 100%);
+    font-family: $font-family;
+
+    h1 {
+        text-align: center;
+        color: white;
+        background-color: $secondary-color;
+        width: 40%;
+        margin: 5% auto;
+        border-radius: 10px;
+
+    }
+
+    h3 {
+        color: $secondary-color;
+        }
+}
+
+.budget-tracker {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-template-rows: 1fr;
+    grid-column-gap: 10px;
+    background-color: $primary-color;
+    height: 75vh;
+    padding: 20px;
+    margin: 30px;
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+
+
+    .main-container { 
+        grid-area: 1 / 2 / 2 / 3; 
+        background-color: $fourth-color;
+        border-radius: 8px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+
+        #summary {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+
+            div {
+                background-color: $primary-color;
+                margin: 5px;
+                text-align: center;
+                color: $secondary-color;
+                border-radius: 5px;
+                
+            }
+        }
+
+        .expenseHistory {
+            text-align: center;
+            display: flex;
+            xpense-history {
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                flex-wrap: nowrap;
+                align-content: center;
+                justify-content: center;
+                align-items: center;
+
+            table {
+                width: 90%;
+            }
+
+            .remove-btn {
+                background-color: $third-color;
+                border: none;
+                color: white;
+                border-radius: 4px;
+                padding: 7px;
+
+                :hover {
+                    background-color: #d7a7a7;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+    .side-container { 
+        grid-area: 1 / 1 / 2 / 2;
+        background-color: $fourth-color;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, 40%) 1fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        border-radius: 8px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+
+        div {
+            background-color: #dfe9dc;
+            text-align: center;
+            margin: 15px;
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+            border-radius: 10px;
+
+            label {
+                color: #648f58;
+            }
+
+            input {
+                border: 1px solid $secondary-color;
+            }
+
+            button {
+                margin: 15px auto;
+                padding: 5px;
+                width: 55%;
+                background-color: $primary-color;
+                border: none;
+                color: white;
+                border-radius: 3px;
+            }
+
+            button:hover {
+                background-color: #dfe9dc;
+                cursor: pointer;
+                color: $secondary-color;
+                border: 1px solid $secondary-color;
+            }
+        } 
+
+        .income-div {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .expense-div {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            align-items: center;
+            justify-content: center;
+
+        
+        }
+
+        .reset {
+            display: flex;
+            align-content: center;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+ }
+
+@media (max-width: 700px) {
+    .budget-tracker {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        background-color: none;
+    }
+}
