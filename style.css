@@ -51,14 +51,32 @@ html h3 {
 .budget-tracker .main-container #summary div {
   background-color: #88be79;
   margin: 5px;
-  padding: 5px;
   text-align: center;
   color: #305630;
   border-radius: 5px;
 }
-.budget-tracker .main-container .expenseHistory {
+.budget-tracker .main-container .income-history-div {
   text-align: center;
   display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+.budget-tracker .main-container .income-history-div table {
+  width: 90%;
+}
+.budget-tracker .main-container .income-history-div .remove-income {
+  background-color: #b32323;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  padding: 7px;
+}
+.budget-tracker .main-container .income-history-div .remove-income :hover {
+  background-color: #d7a7a7;
+  cursor: pointer;
 }
 .budget-tracker .main-container .expenseHistory {
   text-align: center;
@@ -72,14 +90,14 @@ html h3 {
 .budget-tracker .main-container .expenseHistory table {
   width: 90%;
 }
-.budget-tracker .main-container .expenseHistory .remove-btn {
+.budget-tracker .main-container .remove-btn {
   background-color: #b32323;
   border: none;
   color: white;
   border-radius: 4px;
   padding: 7px;
 }
-.budget-tracker .main-container .expenseHistory  .remove-btn:hover {
+.budget-tracker .main-container .remove-btn :hover {
   background-color: #d7a7a7;
   cursor: pointer;
 }

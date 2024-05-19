@@ -6,10 +6,10 @@
     <title>Budget Tracker</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
-<header>
-    <h1>Budget Tracker 💵</h1>
-</header>
 <body>
+    <header>
+        <h1>Budget Tracker 💵</h1>
+    </header>
     <div class="budget-tracker">
         <div class="main-container"> 
             <!-- Show income, spending, and budget -->
@@ -26,6 +26,21 @@
             </div>
             <hr>
 
+            <div class="income-history-div">
+                <h3>Income History</h3>
+                <table id="income-history">
+                    <tr>
+                        <th>Income Name</th>
+                        <th>Amount</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <td>Paycheck</td>
+                        <td>$525.00</td>
+                        <td><button class="remove-btn">Remove</button></td>
+                    </tr>
+                </table>
+            </div>
             <!-- Expense History -->
             <div class="expenseHistory">
                 <h3>Expense History</h3>
@@ -48,7 +63,9 @@
                 <!-- Add Income -->
                 <h3>Add Income</h3>
                 <form id="budget-input">
-                    <label for="add-income">Add Income</label>
+                    <label for="Income-title">Income Title:</label>
+                    <input type="text" name="income-title" id="income-title">
+                    <label for="add-income">Amount</label>
                     <input type="text" name="add-income" id="add-income">
                     <button type="submit" class="add-btn" id="income-btn">Add Income</button>
                 </form>

@@ -1,132 +1,96 @@
+// Create Budget Tracker Class
 class BudgetTracker {
+    // Budget, Income and Expenses Properties
     constructor() {
         this.budget = 0;
-        this.income = 0;
+        this.income = [];
         this.expenses = [];
     }
 
-    // ADD INCOME
-    addIncome(amount) {
-        this.income += amount;
+    //Method to add income
+    addIncome(name, amount) {
+        const income = {name, amount};
+        this.income.push(income);
         this.updateBudget();
-        document.getElementById('total-income').textContent = this.income;
-
+        this.displayIncome();
     }
 
-    //ADD EXPENSES
     addExpense(name, amount) {
         const expense = {name, amount};
         this.expenses.push(expense);
         this.updateBudget();
         this.displayExpenses();
-    
-        
     }
 
-    //Remove Expenses
+    removeIncome(index) {
+        this.income.splice(index, 1);
+        this.updateBudget();
+        this.displayIncome();
+    }
+
     removeExpense(index) {
         this.expenses.splice(index, 1);
         this.updateBudget();
         this.displayExpenses();
     }
 
-    // Update Budget
     updateBudget() {
         const totalExpenses = this.expenses.reduce((total, expense) => total + expense.amount, 0);
-        this.budget = this.income - totalExpenses;
-        document.getElementById('total-budget').textContent = this.budget;
-        document.getElementById('total-spending').textContent = totalExpenses;
+        this.budget = this.income.reduce((total, income) => total + income.amount, 0) - totalExpenses;
+        document.getElementById('total-budget').textContent = this.budget.toFixed(2);
+        document.getElementById('total-spending').textContent = totalExpenses.toFixed(2);
+        document.getElementById('total-income').textContent = this.income.reduce((total, income) => total + income.amount, 0).toFixed(2);
     }
 
+    displayIncome() {
+        const incomeHistory = document.getElementById('income-history');
+        incomeHistory.innerHTML = ""; // Clear the content before adding new items
 
-    // Show expense history 
+        this.income.forEach((income, index) => {
+            const row = incomeHistory.insertRow();
+            row.innerHTML = `<td>${income.name}</td>
+            <td>$${income.amount.toFixed(2)}</td>
+            <td><button class="remove-income" onclick="budgetTracker.removeIncome(${index})">Remove</button></td>`;
+        });
+    }
+
     displayExpenses() {
-        // console.log("Displaying expenses");
         const expenseHistory = document.getElementById('expense-history');
+        expenseHistory.innerHTML = ""; // Clear the content before adding new items
 
-    // clear array
-    expenseHistory.innerHTML = " ";
-
-
-
-
-    // Add new expense rows
-    this.expenses.forEach((expense, index) => {
-        // console.log("Expense:", expense);
-        // Create new table row
-        const expenseRow = document.createElement('tr');
-        //add class of 'expense-row' to row
-        expenseRow.classList.add('expense-row');
-        
-        // add table cell
-        const expenseNameDis = document.createElement('td');
-        // let cell display the name of expense
-        expenseNameDis.textContent = expense.name;
-        // add cell to row
-        expenseRow.appendChild(expenseNameDis);
-
-        // add table cell
-        const expenseAmtDis = document.createElement('td');
-        // let cell display the expense amount
-        expenseAmtDis.textContent = `$${expense.amount}`;
-        // add cell to row
-        expenseRow.appendChild(expenseAmtDis);
-
-        //add table cell
-        const removeBtnCell = document.createElement('td');
-        // create button
-        const removeBtn = document.createElement('button');
-
-         // add class to button for styling purposes
-        removeBtn.classList.add('remove-btn');
-        removeBtn.textContent = 'Remove';
-
-        //remove button functionality 
-        removeBtn.addEventListener('click', () => {
-            this.removeExpense(index);
-        });
-
-        // add button to row
-        removeBtnCell.appendChild(removeBtn); 
-        expenseRow.appendChild(removeBtnCell);
-        
-        // add row to table
-        expenseHistory.appendChild(expenseRow);
+        this.expenses.forEach((expense, index) => {
+            const row = expenseHistory.insertRow();
+            row.innerHTML = `<td>${expense.name}</td>
+            <td>$${expense.amount.toFixed(2)}</td>
+            <td><button class="remove-btn" onclick="budgetTracker.removeExpense(${index})">Remove</button></td>`;
         });
     }
 
-     // Reset the budget tracker
-     reset() {
+    reset() {
         this.budget = 0;
-        this.income = 0;
+        this.income = [];
         this.expenses = [];
         this.updateBudget();
         this.displayExpenses();
+        this.displayIncome();
     }
 }
 
-    // create new budget tracker
 const budgetTracker = new BudgetTracker();
 
-// add 'click' event listener to income button
 document.getElementById('income-btn').addEventListener('click', function(event){
     event.preventDefault();
-    //turn amount string into a number value
+    const incomeTitle = document.getElementById('income-title').value;
     const incomeAmount = parseFloat(document.getElementById('add-income').value);
-
-    // if amount is a number
-    if (!isNaN(incomeAmount)) {
-        // calls method for adding income
-        budgetTracker.addIncome(incomeAmount);
-
+    if (incomeTitle && !isNaN(incomeAmount)) {
+        budgetTracker.addIncome(incomeTitle, incomeAmount);
+        document.getElementById('income-title').value = '';
         document.getElementById('add-income').value = '';
     } else {
-        // ERROR
-        alert('Please enter a valid income amount.');
+        alert('Please enter valid income title and amount.');
     }
 });
 
-// expense button
 document.getElementById('expense-btn').addEventListener('click', function(event){
     event.preventDefault();
     const expenseTitle = document.getElementById('expense-title').value;
@@ -136,7 +100,7 @@ document.getElementById('expense-btn').addEventListener('click', function(event)
         document.getElementById('expense-title').value = '';
         document.getElementById('amount').value = '';
     } else {
-        alert('Please enter valid expense name and amount.');
+        alert('Please enter valid expense title and amount.');
     }
 });
 

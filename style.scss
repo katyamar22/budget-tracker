@@ -69,23 +69,20 @@ html {
             }
         }
 
-        .expenseHistory {
+        .income-history-div {
             text-align: center;
             display: flex;
-            xpense-history {
-                text-align: center;
-                display: flex;
-                flex-direction: column;
-                flex-wrap: nowrap;
-                align-content: center;
-                justify-content: center;
-                align-items: center;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
 
-            table {
+            table{
                 width: 90%;
             }
 
-            .remove-btn {
+            .remove-income {
                 background-color: $third-color;
                 border: none;
                 color: white;
@@ -96,10 +93,39 @@ html {
                     background-color: #d7a7a7;
                     cursor: pointer;
                 }
+
+            }
+
+        }
+
+        .expenseHistory {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+
+            table {
+                width: 90%;
             }
         }
-    }
+
+          .remove-btn {
+            background-color: $third-color;
+            border: none;
+            color: white;
+            border-radius: 4px;
+            padding: 7px;
+
+            :hover {
+                background-color: #d7a7a7;
+                cursor: pointer;
+            }
+     }
 }
+
 
     .side-container { 
         grid-area: 1 / 1 / 2 / 2;
@@ -170,8 +196,7 @@ html {
             justify-content: center;
         }
     }
-
- }
+}
 
 @media (max-width: 700px) {
     .budget-tracker {
